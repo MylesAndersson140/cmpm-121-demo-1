@@ -29,13 +29,13 @@ button.addEventListener("click", () => {
 });
 
 //Function to increment the counter automatically
-function autoIncrement(){
-    clickCounter++;
-    updateClickCounter();
+function autoIncrement() {
+  clickCounter++;
+  updateClickCounter();
 }
 
 //Using the setInterval function to increment automatically
-setInterval(autoIncrement, 1000) //1000 milliseconds / 1 second
+setInterval(autoIncrement, 1000); //1000 milliseconds / 1 second
 
 //Inital set up
 updateClickCounter();
