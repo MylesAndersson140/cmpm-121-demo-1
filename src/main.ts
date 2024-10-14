@@ -19,16 +19,15 @@ let clickCounter = 0;
 updateClickCounter();
 
 //Function to help us update the click counter.
-function updateClickCounter(){
-    clickCounterDiv.textContent = `${clickCounter} ${clickCounter === 1 ? 'Apple' : 'Apples'}`;
+function updateClickCounter() {
+  clickCounterDiv.textContent = `${clickCounter} ${clickCounter === 1 ? "Apple" : "Apples"}`;
 }
 
 //Adding an event listener to the button
 button.addEventListener("click", () => {
-    clickCounter++;
-    updateClickCounter();
-  });
-
+  clickCounter++;
+  updateClickCounter();
+});
 
 app.append(button);
 app.append(clickCounterDiv);
