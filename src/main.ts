@@ -2,7 +2,7 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "My nifty game!!";
+const gameName = "My Nifty game!!";
 document.title = gameName;
 
 const header = document.createElement("h1");
@@ -16,7 +16,6 @@ button.textContent = "🍎";
 const clickCounterDiv = document.createElement("div");
 clickCounterDiv.id = "click-counter";
 let clickCounter = 0;
-updateClickCounter();
 
 //Function to help us update the click counter.
 function updateClickCounter() {
@@ -29,5 +28,16 @@ button.addEventListener("click", () => {
   updateClickCounter();
 });
 
+//Function to increment the counter automatically
+function autoIncrement(){
+    clickCounter++;
+    updateClickCounter();
+}
+
+//Using the setInterval function to increment automatically
+setInterval(autoIncrement, 1000) //1000 milliseconds / 1 second
+
+//Inital set up
+updateClickCounter();
 app.append(button);
 app.append(clickCounterDiv);
