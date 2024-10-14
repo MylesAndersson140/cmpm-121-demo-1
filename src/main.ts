@@ -11,8 +11,24 @@ app.append(header);
 
 const button = document.createElement("button");
 button.textContent = "🍎";
+
+//Click counter
+const clickCounterDiv = document.createElement("div");
+clickCounterDiv.id = "click-counter";
+let clickCounter = 0;
+updateClickCounter();
+
+//Function to help us update the click counter.
+function updateClickCounter(){
+    clickCounterDiv.textContent = `${clickCounter} ${clickCounter === 1 ? 'Apple' : 'Apples'}`;
+}
+
+//Adding an event listener to the button
 button.addEventListener("click", () => {
-  //something happens when clicked!
-});
+    clickCounter++;
+    updateClickCounter();
+  });
+
 
 app.append(button);
+app.append(clickCounterDiv);
