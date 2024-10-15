@@ -44,17 +44,15 @@ button.addEventListener("click", () => {
   updateClickCounter();
 });
 
-
 //Adding an event listener to the upgrade button
 upgradeButton.addEventListener("click", () => {
-    if (clickCounter >= 10) {
-      clickCounter = Math.round((clickCounter - 10) * 100) / 100;
-      //Adding 1 to the growth rate
-      growthRate = Math.round((growthRate + 1) * 100) / 100;
-      updateClickCounter();
-    }
-  });
-
+  if (clickCounter >= 10) {
+    clickCounter = Math.round((clickCounter - 10) * 100) / 100;
+    //Adding 1 to the growth rate
+    growthRate = Math.round((growthRate + 1) * 100) / 100;
+    updateClickCounter();
+  }
+});
 
 //Function for a better counter
 function betterCounter(currTimestamp: number) {
@@ -67,7 +65,7 @@ function betterCounter(currTimestamp: number) {
 
   //Calculate fractional increase
   //Rounding the fractional increase as the continous growth was initally unwieldly to see
-  const fracIncrease = Math.round((growthRate * elapsed / 1000) * 100) / 100;
+  const fracIncrease = Math.round(((growthRate * elapsed) / 1000) * 100) / 100;
   clickCounter = Math.round((clickCounter + fracIncrease) * 100) / 100;
 
   updateClickCounter();
