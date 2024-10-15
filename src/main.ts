@@ -13,22 +13,25 @@ const button = document.createElement("button");
 button.textContent = "🍎";
 
 //Upgrade 1 button
+let appleFarmCost = 10;
 const upgradeButton = document.createElement("button");
-upgradeButton.textContent = "Apple Farm (Cost: 10 Apples)";
+upgradeButton.textContent = `Apple Farm (Cost: ${appleFarmCost.toFixed(2)} Apples)`;
 upgradeButton.disabled = true;
 let appleFarmCount = 0;
 const appleFarmCounterDiv = document.createElement("div");
 
 //Upgrade 2 button
+let appleOrchardCost = 100;
 const upgrade2Button = document.createElement("button");
-upgrade2Button.textContent = "Apple Orchard (Cost: 100 Apples)";
+upgrade2Button.textContent = `Apple Orchard (Cost: ${appleOrchardCost.toFixed(2)} Apples)`;
 upgrade2Button.disabled = true;
 let appleOrchardCount = 0;
 const appleOrchardCounterDiv = document.createElement("div");
 
 //Upgrade 3 button
+let appleFactoryCost = 1000;
 const upgrade3Button = document.createElement("button");
-upgrade3Button.textContent = "Apple Factory (Cost: 1000 Apples)";
+upgrade3Button.textContent = `Apple Factory (Cost: ${appleFactoryCost.toFixed(2)} Apples)`;
 upgrade3Button.disabled = true;
 let appleFactoryCount = 0;
 const appleFactoryCounterDiv = document.createElement("div");
@@ -52,15 +55,22 @@ let prevTimestamp: number | undefined;
 function updateClickCounter() {
   const roundedCounter = Math.round(clickCounter * 100) / 100;
   clickCounterDiv.textContent = `${roundedCounter} ${roundedCounter === 1 ? "Apple" : "Apples"}`;
-  upgradeButton.disabled = clickCounter < 10;
-  upgrade2Button.disabled = clickCounter < 100;
-  upgrade3Button.disabled = clickCounter < 1000;
+  upgradeButton.disabled = clickCounter < appleFarmCost;
+  upgrade2Button.disabled = clickCounter < appleOrchardCost;
+  upgrade3Button.disabled = clickCounter < appleFactoryCost;
 }
 
 //Function to help us visually update the growth rate
 function updateGrowthRate() {
   const roundedGrowth = Math.round(growthRate * 100) / 100;
   growthRateDiv.textContent = `Growth rate: ${roundedGrowth} ${roundedGrowth === 1 ? "apple per second" : "apples per second"}`;
+}
+
+//Function to help us keep track of how much an upgrade will cost
+function updateUpgradeText() {
+    upgradeButton.textContent = `Apple Farm (Cost: ${appleFarmCost.toFixed(2)} Apples)`;
+    upgrade2Button.textContent = `Apple Orchard (Cost: ${appleOrchardCost.toFixed(2)} Apples)`;
+    upgrade3Button.textContent = `Apple Factory (Cost: ${appleFactoryCost.toFixed(2)} Apples)`;
 }
 
 //Adding an event listener to the button
@@ -71,40 +81,46 @@ button.addEventListener("click", () => {
 
 //Adding an event listener to the upgrade button
 upgradeButton.addEventListener("click", () => {
-  if (clickCounter >= 10) {
-    clickCounter -= 10;
+  if (clickCounter >= appleFarmCost) {
+    clickCounter -= appleFarmCost;
     //Adding 0.1 to the growth rate
     growthRate += 0.1;
     appleFarmCount++;
+    appleFarmCost = appleFarmCost * 1.15;
     updateClickCounter();
     updateGrowthRate();
     updateUpgradeCounters();
+    updateUpgradeText();
   }
 });
 
 //Adding an event listener to the upgrade button
 upgrade2Button.addEventListener("click", () => {
-  if (clickCounter >= 100) {
-    clickCounter -= 100;
+  if (clickCounter >= appleOrchardCost) {
+    clickCounter -= appleOrchardCost;
     //Adding 2 to the growth rate
     growthRate += 2;
     appleOrchardCount++;
+    appleOrchardCost = appleOrchardCost * 1.15;
     updateClickCounter();
     updateGrowthRate();
     updateUpgradeCounters();
+    updateUpgradeText();
   }
 });
 
 //Adding an event listener to the upgrade button
 upgrade3Button.addEventListener("click", () => {
-  if (clickCounter >= 1000) {
-    clickCounter -= 1000;
+  if (clickCounter >= appleFactoryCost) {
+    clickCounter -= appleFactoryCost;
     //Adding 50 to the growth rate
     growthRate += 50;
     appleFactoryCount++;
+    appleFactoryCost = appleFactoryCost * 1.15;
     updateClickCounter();
     updateGrowthRate();
     updateUpgradeCounters();
+    updateUpgradeText();
   }
 });
 
