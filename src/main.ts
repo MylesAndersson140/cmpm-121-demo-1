@@ -68,9 +68,9 @@ function updateGrowthRate() {
 
 //Function to help us keep track of how much an upgrade will cost
 function updateUpgradeText() {
-    upgradeButton.textContent = `Apple Farm (Cost: ${appleFarmCost.toFixed(2)} Apples)`;
-    upgrade2Button.textContent = `Apple Orchard (Cost: ${appleOrchardCost.toFixed(2)} Apples)`;
-    upgrade3Button.textContent = `Apple Factory (Cost: ${appleFactoryCost.toFixed(2)} Apples)`;
+  upgradeButton.textContent = `Apple Farm (Cost: ${appleFarmCost.toFixed(2)} Apples)`;
+  upgrade2Button.textContent = `Apple Orchard (Cost: ${appleOrchardCost.toFixed(2)} Apples)`;
+  upgrade3Button.textContent = `Apple Factory (Cost: ${appleFactoryCost.toFixed(2)} Apples)`;
 }
 
 //Adding an event listener to the button
