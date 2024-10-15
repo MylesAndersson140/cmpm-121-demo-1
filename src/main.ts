@@ -59,8 +59,8 @@ function updateClickCounter() {
 
 //Function to help us visually update the growth rate
 function updateGrowthRate() {
-    const roundedGrowth = Math.round(growthRate * 100) / 100;
-    growthRateDiv.textContent = `Growth rate: ${roundedGrowth} ${roundedGrowth === 1 ? "apple per second" : "apples per second"}`;
+  const roundedGrowth = Math.round(growthRate * 100) / 100;
+  growthRateDiv.textContent = `Growth rate: ${roundedGrowth} ${roundedGrowth === 1 ? "apple per second" : "apples per second"}`;
 }
 
 //Adding an event listener to the button
@@ -84,34 +84,34 @@ upgradeButton.addEventListener("click", () => {
 
 //Adding an event listener to the upgrade button
 upgrade2Button.addEventListener("click", () => {
-    if (clickCounter >= 100) {
-      clickCounter -= 100
-      //Adding 2 to the growth rate
-      growthRate += 2;
-      appleOrchardCount++;
-      updateClickCounter();
-      updateGrowthRate();
-      updateUpgradeCounters();
-    }
+  if (clickCounter >= 100) {
+    clickCounter -= 100;
+    //Adding 2 to the growth rate
+    growthRate += 2;
+    appleOrchardCount++;
+    updateClickCounter();
+    updateGrowthRate();
+    updateUpgradeCounters();
+  }
 });
 
 //Adding an event listener to the upgrade button
 upgrade3Button.addEventListener("click", () => {
-    if (clickCounter >= 1000) {
-        clickCounter -= 1000;
-        //Adding 50 to the growth rate
-        growthRate += 50;
-        appleFactoryCount++;
-        updateClickCounter();
-        updateGrowthRate();
-        updateUpgradeCounters();
-    }
+  if (clickCounter >= 1000) {
+    clickCounter -= 1000;
+    //Adding 50 to the growth rate
+    growthRate += 50;
+    appleFactoryCount++;
+    updateClickCounter();
+    updateGrowthRate();
+    updateUpgradeCounters();
+  }
 });
 
-function updateUpgradeCounters(){
-    appleFarmCounterDiv.textContent = `Apple Farms: ${appleFarmCount}`;
-    appleOrchardCounterDiv.textContent = `Apple Orchards: ${appleOrchardCount}`;
-    appleFactoryCounterDiv.textContent = `Apple Factories: ${appleFactoryCount}`;
+function updateUpgradeCounters() {
+  appleFarmCounterDiv.textContent = `Apple Farms: ${appleFarmCount}`;
+  appleOrchardCounterDiv.textContent = `Apple Orchards: ${appleOrchardCount}`;
+  appleFactoryCounterDiv.textContent = `Apple Factories: ${appleFactoryCount}`;
 }
 
 //Function for a better counter
