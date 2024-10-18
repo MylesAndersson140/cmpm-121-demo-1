@@ -26,8 +26,8 @@ const availableItems: Item[] = [
     rate: 50,
     description: "A factory that produces apples?",
   },
-  //{name: "Apple Planet", cost: 5000, rate: 250, description: "A whole world dedicated to the production of apples"},
-  //{name: "Apple Multiplyer", cost: 10000, rate: 500, description: "Put in one apple, and 500 comes out??"}
+  {name: "Apple Planet", cost: 5000, rate: 250, description: "A whole world dedicated to the production of apples"},
+  {name: "Apple Multiplyer", cost: 10000, rate: 500, description: "Put one apple in, and 500 comes out??"}
 ];
 
 const app: HTMLDivElement = document.querySelector("#app")!;
@@ -65,7 +65,8 @@ const itemCounts: number[] = [];
 availableItems.forEach((item, index) => {
   const upgradeButton = document.createElement("button");
   upgradeButton.textContent = `${item.name} (Cost: ${item.cost.toFixed(2)} Apples)`;
-  //upgradeButton.title = item.description;
+  //Our items description
+  upgradeButton.title = item.description;
   upgradeButton.disabled = true;
   app.append(upgradeButton);
   itemButtons.push(upgradeButton);
@@ -105,7 +106,10 @@ function updateItemCounters() {
 //Function to help us keep track of how much an upgrade will cost
 function updateButtonText() {
   itemButtons.forEach((button, index) => {
-    button.textContent = `${availableItems[index].name} (Cost: ${availableItems[index].cost.toFixed(2)} Apples)`;
+    const item = availableItems[index];
+    button.textContent = `${item.name} (Cost: ${item.cost.toFixed(2)} Apples)`;
+    //When hovered over, the description text appears
+    button.title = item.description;
   });
 }
 
