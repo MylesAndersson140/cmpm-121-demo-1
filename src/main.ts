@@ -26,8 +26,18 @@ const availableItems: Item[] = [
     rate: 50,
     description: "A factory that produces apples?",
   },
-  {name: "Apple Planet", cost: 5000, rate: 250, description: "A whole world dedicated to the production of apples"},
-  {name: "Apple Multiplyer", cost: 10000, rate: 500, description: "Put one apple in, and 500 comes out??"}
+  {
+    name: "Apple Planet",
+    cost: 5000,
+    rate: 250,
+    description: "A whole world dedicated to the production of apples",
+  },
+  {
+    name: "Apple Multiplyer",
+    cost: 10000,
+    rate: 500,
+    description: "Put one apple in, and 500 comes out??",
+  },
 ];
 
 const app: HTMLDivElement = document.querySelector("#app")!;
