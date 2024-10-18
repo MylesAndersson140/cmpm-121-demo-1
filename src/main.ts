@@ -1,16 +1,31 @@
 import "./style.css";
 
-interface Item{
+interface Item {
   name: string;
   cost: number;
   rate: number;
   description: string;
 }
 
-const availableItems : Item [] = [
-  {name: "Apple Farm", cost: 10, rate: 0.1, description: "A small apple farm with a couple dozen trees!"},
-  {name: "Apple Orchard", cost: 100, rate: 2, description: "A large orchard with apple trees for as far as you can see!"},
-  {name: "Apple Factory", cost: 1000, rate: 50, description: "A factory that produces apples?"},
+const availableItems: Item[] = [
+  {
+    name: "Apple Farm",
+    cost: 10,
+    rate: 0.1,
+    description: "A small apple farm with a couple dozen trees!",
+  },
+  {
+    name: "Apple Orchard",
+    cost: 100,
+    rate: 2,
+    description: "A large orchard with apple trees for as far as you can see!",
+  },
+  {
+    name: "Apple Factory",
+    cost: 1000,
+    rate: 50,
+    description: "A factory that produces apples?",
+  },
   //{name: "Apple Planet", cost: 5000, rate: 250, description: "A whole world dedicated to the production of apples"},
   //{name: "Apple Multiplyer", cost: 10000, rate: 500, description: "Put in one apple, and 500 comes out??"}
 ];
@@ -26,7 +41,7 @@ app.append(header);
 
 const button = document.createElement("button");
 button.textContent = "🍎";
-app.append(button)
+app.append(button);
 
 let clickCounter = 0;
 let growthRate = 0;
@@ -80,7 +95,6 @@ function updateGrowthRate() {
   growthRateDiv.textContent = `Growth rate: ${roundedGrowth} ${roundedGrowth === 1 ? "🍎 per second" : "🍎 per second"}`;
 }
 
-
 //Iterates through the array to determine how many of each upgrade we have, stored in itemCounts
 function updateItemCounters() {
   itemCounters.forEach((counter, index) => {
@@ -98,7 +112,7 @@ function updateButtonText() {
 //A function that assists us in the purchasing of an item.
 //Handles things such as cost managment, current growth rate, and inventory.
 function purchaseItem(index: number) {
-  if (clickCounter >= availableItems[index].cost){
+  if (clickCounter >= availableItems[index].cost) {
     clickCounter -= availableItems[index].cost;
     growthRate += availableItems[index].rate;
 
