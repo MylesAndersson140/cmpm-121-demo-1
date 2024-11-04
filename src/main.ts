@@ -82,17 +82,12 @@ const itemCounts: number[] = [];
 
 //Combination of updateClickCounter and updateGrowthRate
 function updateDisplay(config: DisplayManagement) {
-  const {
-    value,
-    element,
-    suffix = "",
-    icon = "",
-    precision = 2
-  } = config;
+  const { value, element, suffix = "", icon = "", precision = 2 } = config;
 
-  const roundedValue = Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision);
-  const iconText = icon ? ` ${icon}` : '';
-  const suffixText = suffix ? ` ${suffix}` : '';
+  const roundedValue =
+    Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision);
+  const iconText = icon ? ` ${icon}` : "";
+  const suffixText = suffix ? ` ${suffix}` : "";
 
   element.textContent = `${roundedValue}${iconText}${suffixText}`;
 
@@ -104,7 +99,7 @@ function updateClickCounter() {
   updateDisplay({
     value: clickCounter,
     element: clickCounterDiv,
-    icon: "🍎"
+    icon: "🍎",
   });
 
   availableItems.forEach((item, index) => {
@@ -118,8 +113,8 @@ function updateGrowthRate() {
     value: growthRate,
     element: growthRateDiv,
     suffix: "per second",
-    icon: ""
-  })
+    icon: "",
+  });
 }
 
 //Using the forEach() function in replace of a for loop
