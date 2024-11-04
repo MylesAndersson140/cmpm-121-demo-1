@@ -7,6 +7,14 @@ interface Item {
   description: string;
 }
 
+interface DisplayManagement {
+  value: number;
+  element: HTMLElement;
+  suffix?: string;
+  icon?: string;
+  precision?: number;
+}
+
 const availableItems: Item[] = [
   {
     name: "Apple Farm",
@@ -55,6 +63,7 @@ app.append(button);
 
 let clickCounter = 0;
 let growthRate = 0;
+const costIncrease = 1.15;
 
 //Click counter
 const clickCounterDiv = document.createElement("div");
@@ -70,6 +79,48 @@ app.append(growthRateDiv);
 const itemButtons: HTMLButtonElement[] = [];
 const itemCounters: HTMLDivElement[] = [];
 const itemCounts: number[] = [];
+
+//Combination of updateClickCounter and updateGrowthRate
+function updateDisplay(config: DisplayManagement) {
+  const {
+    value,
+    element,
+    suffix = "",
+    icon = "",
+    precision = 2
+  } = config;
+
+  const roundedValue = Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision);
+  const iconText = icon ? ` ${icon}` : '';
+  const suffixText = suffix ? ` ${suffix}` : '';
+
+  element.textContent = `${roundedValue}${iconText}${suffixText}`;
+
+  return roundedValue;
+}
+
+//Click counter with improved display
+function updateClickCounter() {
+  updateDisplay({
+    value: clickCounter,
+    element: clickCounterDiv,
+    icon: "🍎"
+  });
+
+  availableItems.forEach((item, index) => {
+    itemButtons[index].disabled = clickCounter < item.cost;
+  });
+}
+
+//Growth rate with improved display
+function updateGrowthRate() {
+  updateDisplay({
+    value: growthRate,
+    element: growthRateDiv,
+    suffix: "per second",
+    icon: ""
+  })
+}
 
 //Using the forEach() function in replace of a for loop
 availableItems.forEach((item, index) => {
@@ -90,21 +141,6 @@ availableItems.forEach((item, index) => {
 
   upgradeButton.addEventListener("click", () => purchaseItem(index));
 });
-
-//Function to help us update the click counter.
-function updateClickCounter() {
-  const roundedCounter = Math.round(clickCounter * 100) / 100;
-  clickCounterDiv.textContent = `${roundedCounter} ${roundedCounter === 1 ? "🍎" : "🍎"}`;
-  availableItems.forEach((item, index) => {
-    itemButtons[index].disabled = clickCounter < item.cost;
-  });
-}
-
-//Function to help us visually update the growth rate
-function updateGrowthRate() {
-  const roundedGrowth = Math.round(growthRate * 100) / 100;
-  growthRateDiv.textContent = `Growth rate: ${roundedGrowth} ${roundedGrowth === 1 ? "🍎 per second" : "🍎 per second"}`;
-}
 
 //Iterates through the array to determine how many of each upgrade we have, stored in itemCounts
 function updateItemCounters() {
@@ -132,7 +168,7 @@ function purchaseItem(index: number) {
 
     //Increments the amount of a given upgrade we have
     itemCounts[index]++;
-    availableItems[index].cost = availableItems[index].cost * 1.15;
+    availableItems[index].cost = availableItems[index].cost * costIncrease;
 
     updateClickCounter();
     updateGrowthRate();
@@ -152,7 +188,7 @@ let prevTimestamp: number | undefined;
 //const incrementPerSecond = 1;
 
 //Function for a better counter
-function betterCounter(currTimestamp: number) {
+function accurateCounter(currTimestamp: number) {
   if (prevTimestamp === undefined) {
     prevTimestamp = currTimestamp;
   }
@@ -167,10 +203,10 @@ function betterCounter(currTimestamp: number) {
 
   updateClickCounter();
 
-  requestAnimationFrame(betterCounter);
+  requestAnimationFrame(accurateCounter);
 }
 
-requestAnimationFrame(betterCounter);
+requestAnimationFrame(accurateCounter);
 
 //Inital set up
 updateClickCounter();
