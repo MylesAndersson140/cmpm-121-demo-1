@@ -53,13 +53,32 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 const gameName = "A Nifty Apple Collector!!";
 document.title = gameName;
 
+app.innerHTML = "";
+
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
+/* TypeScript column structure inspired by Nick Corfmat,
+https://github.com/NickCorfmat/cmpm-121-demo-1/blob/main/src/main.ts */
+
+//Game Columns
+const upgradesColumn = document.createElement("div");
+upgradesColumn.className = "column upgrades-column";
+
+const clickerColumn = document.createElement("div");
+clickerColumn.className = "column clicker-column";
+
+const statsColumn = document.createElement("div");
+statsColumn.className = "column stats-column";
+
+app.append(upgradesColumn);
+app.append(clickerColumn);
+app.append(statsColumn);
+
 const button = document.createElement("button");
 button.textContent = "🍎";
-app.append(button);
+clickerColumn.append(button);
 
 let clickCounter = 0;
 let growthRate = 0;
@@ -68,12 +87,12 @@ const costIncrease = 1.15;
 //Click counter
 const clickCounterDiv = document.createElement("div");
 clickCounterDiv.id = "click-counter";
-app.append(clickCounterDiv);
+statsColumn.append(clickCounterDiv);
 
 //Growth rate
 const growthRateDiv = document.createElement("div");
 growthRateDiv.id = "growth-rate";
-app.append(growthRateDiv);
+statsColumn.append(growthRateDiv);
 
 //Setting up different arrays for the different item types found in availableItems
 const itemButtons: HTMLButtonElement[] = [];
@@ -124,11 +143,11 @@ availableItems.forEach((item, index) => {
   //Our items description
   upgradeButton.title = item.description;
   upgradeButton.disabled = true;
-  app.append(upgradeButton);
+  upgradesColumn.append(upgradeButton);
   itemButtons.push(upgradeButton);
 
   const counterDiv = document.createElement("div");
-  app.append(counterDiv);
+  statsColumn.append(counterDiv);
   itemCounters.push(counterDiv);
 
   //A new array which counts how many of each element we have purchased, initallized as [0,0,0]
