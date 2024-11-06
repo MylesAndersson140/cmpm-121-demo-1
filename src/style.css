@@ -139,12 +139,12 @@ button:focus-visible {
     color: #213547;
     background-color: #ffe6e8;
   }
-  
+
   .upgrades-column button {
     background-color: #ef5350;
     color: white;
   }
-  
+
   .upgrades-column button:disabled {
     background-color: #ffcdd2;
     color: #666;
@@ -156,7 +156,7 @@ button:focus-visible {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
-  
+
   .column {
     max-height: none;
   }
